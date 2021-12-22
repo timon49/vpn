@@ -8,6 +8,8 @@ VFL_GIT=https://github.com/timon49/vpn
 #install updates and packages
 apt-get update
 apt-get upgrade -y
+apt-get install sudo
+apt-get install npm -Y
 apt-get install -y lsb-release git tor nginx iptables-persistent openvpn
 # openvpn: install stable version from official repo
 #wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
