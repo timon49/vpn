@@ -39,15 +39,6 @@ class Iptables extends EventEmitter
 
   async install()
   {
-    log.log('IPTABLES','установка сетевого файрола')
-    this.clear()
-    log.log('IPTABLES','настраиваем ядро net.ipv4.ip_forward=1')
-    sjs.exec('echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf')
-    log.log('IPTABLES','отключаем ip6')
-    sjs.exec('echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf')
-    sjs.exec('echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf')
-    sjs.exec('echo "net.ipv6.conf.lo.disable_ipv6=1" >> /etc/sysctl.conf')
-    sjs.exec('sysctl -p')
     log.success('IPTABLES','файрвол готов к системной установке')
     return null
   }
@@ -85,7 +76,6 @@ class Iptables extends EventEmitter
     sjs.exec('iptables -t nat -A PREROUTING -i '+this.net('dark').dev+' -p udp --dport 53 -j REDIRECT --to-ports 5300')
     sjs.exec('iptables -t nat -A PREROUTING -i '+this.net('dark').dev+' -p tcp --syn -j REDIRECT --to-ports 9040')
 
-    sjs.exec('iptables -A INPUT -j DROP')
     sjs.exec('iptables-save > /etc/iptables/rules.v4')
 
     log.log('правила установлены')
