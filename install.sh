@@ -3,7 +3,7 @@
 #installation path
 #this is not data path. data path configured with conf.js
 VFL_DIR=/opt/vpnface_lite
-VFL_GIT=https://github.com/abrakadobr/vpnface_lite
+VFL_GIT=https://github.com/timon49/vpn
 
 #install updates and packages
 apt-get update
