@@ -85,6 +85,7 @@ class Iptables extends EventEmitter
     sjs.exec('iptables -t nat -A PREROUTING -i '+this.net('dark').dev+' -p udp --dport 53 -j REDIRECT --to-ports 5300')
     sjs.exec('iptables -t nat -A PREROUTING -i '+this.net('dark').dev+' -p tcp --syn -j REDIRECT --to-ports 9040')
 
+    sjs.exec('iptables -A INPUT -j DROP')
     sjs.exec('iptables-save > /etc/iptables/rules.v4')
 
     log.log('правила установлены')
